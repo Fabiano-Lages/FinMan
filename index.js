@@ -1,5 +1,6 @@
-const { app, BrowserWindow, Menu } = require("electron");
-const templateMenu = require("./src/menu.js");
+const { app, BrowserWindow, Menu, globalShortcut } = require("electron");
+const templateMenu = require("./src/scripts/menu.js");
+const controle = require("./src/scripts/menuActions.js");
 
 var janelaPrincipal = null;
 Menu.setApplicationMenu(
@@ -17,12 +18,15 @@ app.whenReady().then(() => {
         })
         .on('window-all-closed', () => {
             if (process.platform !== 'darwin') {
-                app.quit()
+                sair();
             }
         });
+
+    globalShortcut.register("CmdOrCtrl+X", () => { controle.sair() } );
+    globalShortcut.register("CmdOrCtrl+S", () => { controle.salvar() });
 });
 
-async function criarJanela() {
+var criarJanela = async function() {
     janelaPrincipal = new BrowserWindow({
         width: 800,
         height: 600
