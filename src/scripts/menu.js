@@ -1,4 +1,4 @@
-const { controle } = require("./menuActions.js");
+const controle = require("./menuActions.js");
 
 const templateMenu = [
     {

@@ -1,6 +1,6 @@
 const { app } = require("electron");
 
-var controle = {
+const controle = {
     salvar: async function() {
         console.log("teste");
     },
